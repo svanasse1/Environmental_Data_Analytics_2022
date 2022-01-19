@@ -30,7 +30,7 @@ The completed exercise is due on <>.
 
 3. Are there any components of the course about which you feel apprehensive?
 
-> Answer: Using the new language (like getting Git prepared) can bve daunting. 
+> Answer: Using the new language (like getting Git prepared) can be daunting. I'm also not sure it will be easy switching between Mac and Windows. 
 
 
 ## 2) GitHub
