@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1: Introduction"
-author: "Student Name"
+author: "Sam Vanasse"
 output: pdf_document
 geometry: margin=2.54cm
 ---
@@ -22,21 +22,21 @@ The completed exercise is due on <>.
 
 1. What are your previous experiences with data analytics, R, and Git? Include both formal and informal training.
 
-> Answer: 
+> Answer: I have uysed Stata extensively in undergrad and a couple courses at Duke. My experience with R is limited to the statistics course with Betsy. I have not previouosly used Git in this way. 
 
 2. Are there any components of the course about which you feel confident?
 
-> Answer: 
+> Answer: I feel I can understand a much of the basics behind the coding and hopfully pick up the nuances of R quickly. 
 
 3. Are there any components of the course about which you feel apprehensive?
 
-> Answer: 
+> Answer: Using the new language (like getting Git prepared) can bve daunting. 
 
 
 ## 2) GitHub
 
 Provide a link below to your forked course repository in GitHub. Make sure you have pulled all recent changes from the course repository  and that you have updated your course README file. 
 
-> Answer: 
+> Answer: https://github.com/svanasse1/Environmental_Data_Analytics_2022.git
 
 
