@@ -152,8 +152,9 @@ EPAair.O3.PM25.NC2122.Processed <- read.csv("../Data/Processed/EPAair_O3_PM25_NC
 EPAair.O3.PM25.NC2122.Processed.summaries <- 
   EPAair.O3.PM25.NC2122.Processed %>%
   group_by(Site.Name, Month, Year) %>%
-  filter(!is.na(Ozone) & !is.na(PM25)) %>%
-  summarise(meanAQI = mean(DAILY_AQI_VALUE))
+  filter(!is.na(Ozone) & !is.na(PM2.5)) %>%
+  summarise(meanOzone = mean(Ozone),
+            meanPM = mean(PM2.5))
 
 EPAair.O3.PM25.NC2122.Processed.summaries
 
