@@ -153,20 +153,31 @@ summary(regression.3)
 
 ```{r anova.model}
 #12
+July.LakeTemp.anova <- aov(data = ChemPhys.Data.Processed, temperature_C ~ lakename)
+summary(July.LakeTemp.anova)
 
+July.LakeTemp.anova2 <- lm(data = ChemPhys.Data.Processed, temperature_C ~ lakename)
+summary(July.LakeTemp.anova2)
 
 ```
 
 13. Is there a significant difference in mean temperature among the lakes? Report your findings. 
 
 > Answer: 
-
+  There is a significant difference in temperatures among the different lakes.
 
 
 14. Create a graph that depicts temperature by depth, with a separate color for each lake. Add a geom_smooth (method = "lm", se = FALSE) for each lake. Make your points 50 % transparent. Adjust your y axis limits to go from 0 to 35 degrees. Clean up your graph to make it pretty. 
 
 ```{r scatterplot.2}
-#14.
+#14
+Temp.Depth.Plot <- 
+  ggplot(ChemPhys.Data.Processed, aes(x=depth, y=temperature_C, color=lakename)) +
+  geom_point(size =1, alpha = 0.5) +
+  geom_smooth(method = lm, se = FALSE, color = "black") +
+  labs(title = "Lake Depth by Temperature", x = "Depth", y = "Temperature (C)", color = "Lake Names") +
+  ylim(0, 35)
+print(Temp.Depth.Plot)
 
 
 ```
@@ -175,14 +186,19 @@ summary(regression.3)
 
 ```{r tukey.test}
 #15
+TukeyHSD(July.LakeTemp.anova)
 
+Lake.Temp.Groups <- HSD.test(July.LakeTemp.anova, "lakename", group = TRUE)
+Lake.Temp.Groups
 
 ```
 
 16.From the findings above, which lakes have the same mean temperature, statistically speaking, as Peter Lake? Does any lake have a mean temperature that is statistically distinct from all the other lakes?
 
 >Answer:
-
+  Paul Lake has the same mean temperature statistically, as they have both 
+  been grouped in c. No lake has a temperature that is statistically distinct
+  from all other lakes. 
  
 
 17. If we were just looking at Peter Lake and Paul Lake. What's another test we might explore to see whether they have distinct mean temperatures? 
