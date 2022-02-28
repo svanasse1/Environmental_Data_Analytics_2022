@@ -165,6 +165,8 @@ summary(July.LakeTemp.anova2)
 
 > Answer: 
   There is a significant difference in temperatures among the different lakes.
+  The various lakes have differing temperature estimates all of which are 
+  significant with either a p-value < 0.001 or 0.01.
 
 
 14. Create a graph that depicts temperature by depth, with a separate color for each lake. Add a geom_smooth (method = "lm", se = FALSE) for each lake. Make your points 50 % transparent. Adjust your y axis limits to go from 0 to 35 degrees. Clean up your graph to make it pretty. 
@@ -204,5 +206,6 @@ Lake.Temp.Groups
 17. If we were just looking at Peter Lake and Paul Lake. What's another test we might explore to see whether they have distinct mean temperatures? 
 
 >Answer: 
-
+  We could also use a simple t-test rather than an ANOVA test to see if there is
+  a difference in means amongst the two lakes. 
 
