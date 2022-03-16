@@ -4,7 +4,7 @@ author: "Environmental Data Analytics | John Fay & Luana Lima"
 date: "Spring 2022"
 output: pdf_document
 editor_options:
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 # 1. INTRODUCTION
@@ -59,7 +59,7 @@ First, we'll read in our EPA air quality sites, as we did in the previous exerci
 
 ```{r convert.tabular.data.to.sf.object}
 #Read our EPA points into a spatial dataframe
-epa_pm25_sites_sf <- read_csv('./Data/Raw/EPAair_PM25_NC2018_raw.csv') %>% 
+epa_pm25_sites_sf <- read_csv('../Data/Raw/EPAair_PM25_NC2018_raw.csv') %>% 
   group_by(`Site Name`, COUNTY, SITE_LATITUDE, SITE_LONGITUDE) %>% 
   summarize(
     meanPM = mean(`Daily Mean PM2.5 Concentration`,na.rm=T),
@@ -88,7 +88,7 @@ Below we read in the USA counties shapefile, filtering for just the NC features 
 
 ```{r read.filtered.records.from.shapefile.to.sf.object}
 #
-counties_sf<- st_read('./Data/Spatial/cb_2018_us_county_20m.shp') %>% 
+counties_sf<- st_read('../Data/Spatial/cb_2018_us_county_20m.shp') %>% 
   filter(STATEFP == 37) #Filter for just NC Counties
 
 #
@@ -117,19 +117,21 @@ mapView(counties_sf, zcol = "AWATER")
 
 ```{r read HUCs shapefile}
 #Read the shapefile into an sf dataframe named "huc8_sf"
-
+huc8_sf <- st_read('../Data/Spatial/NCHUC8.shp') 
 
 #Reveal the columns
-
+colnames(huc8_sf)
 
 #Check the CRS
-
+st_crs(huc8_sf)
 
 #Examine some records
-
+head(huc8_sf)
 
 #View the data as a map, colored by the acreage in each
-
+ggplot(data=huc8_sf) +
+  geom_sf(aes(fill=ACRES)) +
+  scale_fill_continuous(type='viridis')
 
 ```
 
@@ -139,11 +141,14 @@ mapView(counties_sf, zcol = "AWATER")
 
 ```{r Select the Upper Neuse HUC 8}
 #Read the shapefile into an sf dataframe
-
-
+huc8_sf.subset <- st_read('../Data/Spatial/NCHUC8.shp') %>%
+  filter(SUBBASIN == 'Upper Neuse')
 
 #Create a map
-
+ggplot() + 
+  geom_sf(data=huc8_sf.subset, fill = 'purple')
+  ##There was another line here##
+  
 
 ```
 
@@ -239,13 +244,17 @@ ggplot() +
 
 ```{r}
 #Compute HUC8 wind energy
-
-
+huc12_wind <- read.csv(
+  'https://raw.githubusercontent.com/ENV859/EnviroAtlasData/main/Wind_Energy.csv',
+  colClasses = c('HUC_12' = 'factor')) %>%
+  mutate(HUC_8 = substr(HUC_12,1,8)) %>%
+  group_by(HUC_8) %>%
+  summarize(SumWindEnergy = sum(AvgWindEnergy))
 
 
 #Join to HUC_8 features
-
-
+wind_join <- huc8_sf %>% 
+  left_join(huc12_wind, by = c("HUC_8" = "HUC_8"))
 
 
 #View the outputs
