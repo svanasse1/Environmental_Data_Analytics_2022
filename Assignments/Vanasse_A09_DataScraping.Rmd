@@ -53,7 +53,8 @@ Indicate this website as the as the URL to be scraped. (In other words, read the
 
 ```{r set.the.scraping.website}
 #2
-waterURL <- read_html("https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2020")
+waterURL <- 
+  read_html("https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2020")
 
 ```
 
@@ -73,9 +74,12 @@ In the code chunk below scrape these values, assigning them to three separate va
 
 ```{r scrape.the.data}
 #3
-water.system.name <- waterURL %>% html_nodes('div+ table tr:nth-child(1) td:nth-child(2)') %>% html_text()
-pwsid <- waterURL %>% html_nodes('td tr:nth-child(1) td:nth-child(5)') %>% html_text()
-ownership <- waterURL %>% html_nodes('div+ table tr:nth-child(2) td:nth-child(4)') %>% html_text()
+water.system.name <- waterURL %>% 
+  html_nodes('div+ table tr:nth-child(1) td:nth-child(2)') %>% html_text()
+pwsid <- waterURL %>% 
+  html_nodes('td tr:nth-child(1) td:nth-child(5)') %>% html_text()
+ownership <- waterURL %>% 
+  html_nodes('div+ table tr:nth-child(2) td:nth-child(4)') %>% html_text()
 max.withdrawals.mgd <- waterURL %>% html_nodes('th~ td+ td') %>% html_text()
   
 
@@ -155,7 +159,7 @@ scrape.it <- function(the_year,the_pwsid){
 
 7. Use the function above to extract and plot max daily withdrawals for Durham (PWSID='03-32-010') for each month in 2015
 
-```{r fetch.and.plot.Durham.2015.data}
+```{r}
 #7
 durham.2015.df <- scrape.it(2015,"03-32-010")
 
