@@ -65,6 +65,14 @@ See: <https://rmarkdown.rstudio.com> and class recording.
 
 <Fill in our discussion below with bullet points. Use italics and bold for emphasis (hint: use the cheat sheets or `Help` →`Markdown Quick Reference` to figure out how to make bold and italic text).> 
 
+* Easy Replication
+* GitHub Integration
+
+
+```{r}
+
+```
+
 
 ## TEXT EDITING CHALLENGE
 
@@ -85,6 +93,7 @@ Create an R chunk below called "setup" that checks your working directory, loads
 Load the NTL-LTER_Lake_Nutrients_Raw dataset, display the head of the dataset, and set the date column to a date format.
 
 Customize the chunk options such that the code is run but is not displayed in the final document.
+
 
 
 ### Data Exploration, Wrangling, and Visualization
